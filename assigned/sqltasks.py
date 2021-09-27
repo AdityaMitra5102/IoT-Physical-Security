@@ -1,3 +1,6 @@
+#Before running the program to test, you need to install Azure SQL drivers
+#Link: https://docs.microsoft.com/en-us/sql/connect/odbc/download-odbc-driver-for-sql-server?view=sql-server-ver15
+
 import pyodbc
 server = 'physicalsecuritydb.database.windows.net'
 database = 'physical-security-db'
