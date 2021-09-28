@@ -30,7 +30,7 @@ def addUser(username, device_id, email):
 	
 	cursor.execute(command,username,device_id,email)
 	cursor.commit()
-	#TODO add the user to table
+	
 	
 	
 def getEmailFromUser(username):
