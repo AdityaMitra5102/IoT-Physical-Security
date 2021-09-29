@@ -15,20 +15,45 @@ cursor=conn.cursor()
 
 #References: https://docs.microsoft.com/en-us/azure/azure-sql/database/connect-query-python
 
+
+
 def createTable():
+	cursor.execute("CREATE TABLE [User](username VARCHAR(30) NOT NULL UNIQUE, device_id VARCHAR(10) NOT NULL UNIQUE,email VARCHAR(30) NOT NULL UNIQUE)")
+	cursor.commit()
 	#TODO Create table with columns username, device_id, email. All device_id is VARCHAR(10), others are VARCHAR(30)
 	#All are NOT NULL and UNIQUE
-	pass
+	
 	
 def addUser(username, device_id, email):
+	
+	command = 'INSERT INTO [User] VALUES (?,?,?)'
+	
+	cursor.execute(command,username,device_id,email)
+	cursor.commit()
 	#TODO add the user to table
-	pass
+	
 	
 def getEmailFromUser(username):
+	command ='SELECT email FROM [User] WHERE username=?'
+	cursor.execute(command,username)
+
+	retValue=cursor.fetchone()[0]
+    cursor.commit()
+	return retValue
 	#TODO return email of the user by searching with username 
-	pass
+	
 	
 def getDeviceFromUser(username):
-	#TODO return device id of the user by searching with username 
-	pass
+	command='SELECT device_id FROM [User] WHERE username=?'
 	
+	cursor.execute(command,username)
+	
+	retValue=cursor.fetchone()[0]
+	cursor.commit()
+	return retValue
+	#TODO return device id of the user by searching with username
+
+addUser("{username}","{device_id}","{email}")
+getEmailFromUser("{username}")
+getDeviceFromUser("{username}")
+
