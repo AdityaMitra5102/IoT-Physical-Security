@@ -76,6 +76,7 @@ def loginresp():
 	global email
 	global uname
 	global operation
+	operation=2
 	uname=request.form['username']
 	try:
 		email=getEmailFromUser(uname)
