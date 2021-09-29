@@ -6,3 +6,4 @@ cryptography
 pyodbc
 pyqrcode
 pypng
+pyserial
