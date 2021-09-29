@@ -81,7 +81,7 @@ def makeId():
 	return password
 
 def serialoutput():
-	pass
+	writeToArduino()
 	
 if __name__ == '__main__':
     getId()
