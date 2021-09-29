@@ -6,6 +6,7 @@ from pyqrcode import QRCode
 import string
 import random
 from crypto import *
+from physical import *
 
 app = Flask(__name__, static_url_path="")
 id=''
