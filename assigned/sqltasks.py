@@ -30,14 +30,15 @@ def addUser(username, device_id, email):
 	
 	cursor.execute(command,username,device_id,email)
 	cursor.commit()
-	
+	#TODO add the user to table
 	
 	
 def getEmailFromUser(username):
 	command ='SELECT email FROM [User] WHERE username=?'
 	cursor.execute(command,username)
-	cursor.commit()
-	retValue=cursor.fetchall()
+
+	retValue=cursor.fetchone()[0]
+    cursor.commit()
 	return retValue
 	#TODO return email of the user by searching with username 
 	
@@ -46,8 +47,9 @@ def getDeviceFromUser(username):
 	command='SELECT device_id FROM [User] WHERE username=?'
 	
 	cursor.execute(command,username)
+	
+	retValue=cursor.fetchone()[0]
 	cursor.commit()
-	retValue=cursor.fetchall()
 	return retValue
 	#TODO return device id of the user by searching with username
 
