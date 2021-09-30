@@ -15,7 +15,7 @@ import os
 app = Flask(__name__, static_url_path="")
 app.secret_key = os.urandom(32)  # Used for session.
 
-rp = PublicKeyCredentialRpEntity("cryptane", "Demo server")
+rp = PublicKeyCredentialRpEntity("physicalsecurityserver.centralindia.cloudapp.azure.com", "Test server")
 server = Fido2Server(rp)
 user='user1'
 email=''
