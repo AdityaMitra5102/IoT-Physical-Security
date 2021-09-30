@@ -11,7 +11,7 @@ from physical import *
 app = Flask(__name__, static_url_path="")
 id=''
 token=''
-server="https://cryptane:5000"
+server="https://physicalsecurityserver.centralindia.cloudapp.azure.com:5000"
 
 @app.route('/')
 def index():
