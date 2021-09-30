@@ -1,13 +1,28 @@
 <html>
 <head>
   <title>Register Security key</title>
+  <style>
+    .GFG {
+        background-color: white;
+        border: 2px solid black;
+        color: green;
+        padding: 5px 10px;
+        text-align: center;
+        display: inline-block;
+        font-size: 20px;
+        margin: 10px 30px;
+        cursor: pointer;
+        text-decoration:none;
+    }
+</style>
   <script src="/cbor.js"></script>
   
 </head>
 <body>
   <h1>Register Security Key</h1>
   <p>Connect key and take action</p>
-  <a href="/">Cancel</a>
+  <a href="/" class="GFG"
+  >Cancel</a>
 
   <script>
     fetch('/api/register/beginkey', {
