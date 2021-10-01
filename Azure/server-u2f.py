@@ -78,9 +78,7 @@ def register_begin():
     )
 
     session["state"] = state
-    print("\n\n\n\n")
-    print(registration_data)
-    print("\n\n\n\n")
+   
     return cbor.encode(registration_data)
 
 
@@ -89,13 +87,12 @@ def register_complete():
     data = cbor.decode(request.get_data())
     client_data = ClientData(data["clientDataJSON"])
     att_obj = AttestationObject(data["attestationObject"])
-    print("clientData", client_data)
-    print("AttestationObject:", att_obj)
+   
 
     auth_data = server.register_complete(session["state"], client_data, att_obj)
 
     credentials.append(auth_data.credential_data)
-    print("REGISTERED CREDENTIAL:", auth_data.credential_data)
+   
     return cbor.encode({"status": "OK"})
 
 
@@ -119,8 +116,7 @@ def authenticate_complete():
     client_data = ClientData(data["clientDataJSON"])
     auth_data = AuthenticatorData(data["authenticatorData"])
     signature = data["signature"]
-    print("clientData", client_data)
-    print("AuthenticatorData", auth_data)
+   
 
     server.authenticate_complete(
         session.pop("state"),
@@ -130,7 +126,7 @@ def authenticate_complete():
         auth_data,
         signature,
     )
-    print("ASSERTION OK")
+  
     return cbor.encode({"status": "OK"})
 
 
@@ -156,9 +152,7 @@ def u2f_begin():
     )
 
     session["state"] = state
-    print("\n\n\n\n")
-    print(registration_data)
-    print("\n\n\n\n")
+  
     return cbor.encode(websafe_encode(registration_data["publicKey"]["challenge"]))
 
 
@@ -167,18 +161,17 @@ def u2f_complete():
     data = cbor.decode(request.get_data())
     client_data = ClientData.from_b64(data["clientData"])
     reg_data = RegistrationData.from_b64(data["registrationData"])
-    print("clientData", client_data)
-    print("U2F RegistrationData:", reg_data)
+  
     att_obj = AttestationObject.from_ctap1(sha256(b"https://localhost:5000"), reg_data)
-    print("AttestationObject:", att_obj)
+  
 
     auth_data = att_obj.auth_data
 
     credentials.append(auth_data.credential_data)
-    print("REGISTERED U2F CREDENTIAL:", auth_data.credential_data)
+  
     return cbor.encode({"status": "OK"})
 
 
 if __name__ == "__main__":
-    print(__doc__)
+    
     app.run(ssl_context="adhoc", debug=False)
