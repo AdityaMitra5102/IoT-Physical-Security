@@ -1,5 +1,4 @@
-#Before running the program to test, you need to install Azure SQL drivers
-#Link to download: https://docs.microsoft.com/en-us/sql/connect/odbc/download-odbc-driver-for-sql-server?view=sql-server-ver15
+
 
 import pyodbc
 server = 'physicalsecuritydb.database.windows.net'
@@ -10,10 +9,7 @@ driver= '{ODBC Driver 17 for SQL Server}'
 conn=pyodbc.connect('DRIVER='+driver+';SERVER=tcp:'+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password)
 cursor=conn.cursor()
 
-#Instruction: Use cursor.execute('Command') to run commands. use cursor.fetchone() to fetch output
-#Instruction: Remove the word pass from the methods after adding the commands
 
-#References: https://docs.microsoft.com/en-us/azure/azure-sql/database/connect-query-python
 
 
 
@@ -39,7 +35,7 @@ def getEmailFromUser(username):
 		retValue=cursor.fetchone()[0]
 		cursor.commit()
 		return retValue
-		#TODO return email of the user by searching with username 
+		 
 	except:
 		return "00"
 	
@@ -50,7 +46,7 @@ def getDeviceFromUser(username):
 		retValue=cursor.fetchone()[0]
 		cursor.commit()
 		return retValue
-		#TODO return device id of the user by searching with username
+		
 	except:
 		return "00"
 		
@@ -61,7 +57,7 @@ def getUserFromDevice(device_id):
 		retValue=cursor.fetchone()[0]
 		cursor.commit()
 		return retValue
-		#TODO return device id of the user by searching with username
+	
 	except:
 		return "00"
 		
