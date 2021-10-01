@@ -48,12 +48,11 @@ def unlockinit():
 	global authtoken
 	cipher1=request.args.get('id')
 	cipher2=request.args.get('auth')
-	print(cipher1)
-	print(cipher2)
+	
 	user=decrypt(cipher1,key2)
-	print(user)
+	
 	authtoken=decrypt(cipher2,key3)
-	print(authtoken)
+	
 	return redirect("/authenticatefido.html")
 
 @app.route("/checkfirsttime", methods=["GET"])
@@ -80,8 +79,7 @@ def loginresp():
 	uname=request.form['uname']
 	try:
 		email=getEmailFromUser(uname)
-		print(email)
-		print(uname)
+		
 		operation=2
 		sendOTP()
 		return redirect("/otp.html")
@@ -118,8 +116,7 @@ def signupresp():
 	global operation
 	email=request.form['email']
 	uname=request.form['username']
-	print(email)
-	print(uname)
+	
 	operation=1
 	sendOTP()
 	return redirect("/otp.html")
@@ -133,7 +130,7 @@ def otpauth():
 	global user
 	recotp=request.form['cred']
 	if (recotp==otp):
-		print('Auth successful')
+		
 		if operation==1:
 			user=devtemp
 			try:
@@ -163,10 +160,9 @@ def register_beginkey():
     )
 
     session["state"] = state
-    print("\n\n\n\n")
-    print(registration_data)
+  
     #regdata.append(user)
-    print("\n\n\n\n")
+    
     return cbor.encode(registration_data)
 
 
@@ -176,18 +172,17 @@ def register_completekey():
     #regdict=read1()
     data = cbor.decode(request.get_data())
     client_data = ClientData(data["clientDataJSON"])
-    #print(client_data)
+    
     att_obj = AttestationObject(data["attestationObject"])
-    #print("clientData", client_data)
-    #print("AttestationObject:", att_obj)
+   
 
     auth_data = server.register_complete(session["state"], client_data, att_obj)
-    #print(auth_data)
+   
     credentials.append(auth_data.credential_data)
-    print("REG DONE")
+    
     savekey(credentials)
     l=str(auth_data.credential_data)
-    print(data)
+   
     l=l[l.index('credential_id'):l.index('public_key')-2]
     return cbor.encode({"status": "OK"})
 
@@ -214,7 +209,7 @@ def authenticate_completekey():
     client_data = ClientData(data["clientDataJSON"])
     auth_data = AuthenticatorData(data["authenticatorData"])
     signature = data["signature"]
-    print(data)
+  
     cred=server.authenticate_complete(
         session.pop("state"),
         credentials,
@@ -223,8 +218,7 @@ def authenticate_completekey():
         auth_data,
         signature,
     )
-    print("ASSERTION OK")
-    print("Authenticated "+user);
+  
     return cbor.encode({"status": user})
     
 def savekey(credentials):
@@ -234,12 +228,11 @@ def savekey(credentials):
 		
 def readkey():
 	global user
-	print(user)
+	
 	try:
 		with open(user+'datafilekey.pkl', 'rb') as inp:
 			temp = pickle.load(inp)
-			print("Data read")
-			#print(credentials)
+			
 			return temp
 	except:
 		print("no cred data")
