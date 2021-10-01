@@ -72,6 +72,7 @@ def unlocksuccess():
 	
 @app.route("/loginresp", methods=["POST"])
 def loginresp():
+	global user
 	global email
 	global uname
 	global operation
@@ -79,7 +80,7 @@ def loginresp():
 	uname=request.form['uname']
 	try:
 		email=getEmailFromUser(uname)
-		
+		user=getDeviceFromUser(uname)
 		operation=2
 		sendOTP()
 		return redirect("/otp.html")
