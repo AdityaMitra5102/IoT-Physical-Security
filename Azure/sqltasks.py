@@ -64,6 +64,11 @@ def getUserFromDevice(device_id):
 		#TODO return device id of the user by searching with username
 	except:
 		return "00"
+		
+def deleteFromUser(username):
+	command='DELETE FROM [User] WHERE username=?'
+	cursor.execute(command,username)
+	cursor.commit()
 
 def dropTable():
 	cursor.execute("DROP TABLE IF EXISTS [User]")

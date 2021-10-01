@@ -91,10 +91,18 @@ def loginresp():
 
 @app.route("/deleteallkeys")
 def deleteallkeys():
+	global user
 	filename=user+'datafilekey.pkl'
 	if os.path.exists(filename):
 		os.remove(filename)
 	return redirect("/home.html")
+	
+@app.route("/deleteuser")
+def deleteuser():
+	global uname
+	deleteallkeys()
+	deleteFromUser(uname)
+	return redirect("/deletesuccess.html")
 
 @app.route("/devicereg", methods=["GET"])
 def devicereg():
