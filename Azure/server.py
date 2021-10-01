@@ -71,10 +71,6 @@ def unlocksuccess():
 	token=encrypt(authtoken,key4)
 	return redirect("http://localhost:8080/unlockdone?id="+token)
 	
-@app.route("/unlockfail")
-def unlocksuccess():
-	return redirect("http://localhost:8080/")
-
 @app.route("/loginresp", methods=["POST"])
 def loginresp():
 	global email
