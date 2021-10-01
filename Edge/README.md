@@ -1,3 +1,10 @@
+Operating system: Ubuntu 21.04LTS
+
+Update OS, Install python3, pip3
+Install dependencies with
+```
+pip3 install -r requirements.txt
+```
 To setup arduino operations, run
 
 ```
