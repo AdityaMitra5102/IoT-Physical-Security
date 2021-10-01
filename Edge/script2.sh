@@ -1,1 +1,1 @@
-gnome-terminal -e script.sh
+gnome-terminal -e <ABSOLUTE PATH>/script.sh
