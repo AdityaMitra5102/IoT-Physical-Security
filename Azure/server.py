@@ -151,8 +151,8 @@ def register_beginkey():
     registration_data, state = server.register_begin(
         {
             "id": uid.encode('ascii'),
-            "name": "a_user",
-            "displayName": "A. User",
+            "name": uname,
+            "displayName": uname,
             "icon": "https://example.com/image.png",
         },
         credentials,

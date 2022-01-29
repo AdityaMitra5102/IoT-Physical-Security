@@ -15,7 +15,7 @@ cursor=conn.cursor()
 
 def createTable():
 	try:
-		cursor.execute("CREATE TABLE [User](username VARCHAR(30) NOT NULL UNIQUE, device_id VARCHAR(10) NOT NULL UNIQUE,email VARCHAR(30) NOT NULL )")
+		cursor.execute("CREATE TABLE [User](username VARCHAR(30) NOT NULL UNIQUE, device_id VARCHAR(10) NOT NULL UNIQUE,email VARCHAR(30) NOT NULL)")
 		cursor.commit()
 	except:
 		pass
